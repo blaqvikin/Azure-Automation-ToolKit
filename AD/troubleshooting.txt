@@ -1,0 +1,1359 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\amandagonzalez_cbc> echo %logonserver%
+%logonserver%
+PS C:\Users\amandagonzalez_cbc> systeminfo |findstr /B /C:xyz.local
+PS C:\Users\amandagonzalez_cbc> systeminfo |findstr /B /C:"Domain"
+Domain:                    XYZ.LOCAL
+PS C:\Users\amandagonzalez_cbc> whoami /all
+
+USER INFORMATION
+----------------
+
+User Name              SID
+====================== =============================================
+xyz\amandagonzalez_cbc S-1-5-21-775438850-3369346780-1388710907-1165
+
+
+GROUP INFORMATION
+-----------------
+
+Group Name                                 Type             SID                                            Attributes
+========================================== ================ ============================================== ==================================================
+Everyone                                   Well-known group S-1-1-0                                        Mandatory group, Enabled by default, Enabled group
+BUILTIN\Users                              Alias            S-1-5-32-545                                   Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\INTERACTIVE                   Well-known group S-1-5-4                                        Mandatory group, Enabled by default, Enabled group
+CONSOLE LOGON                              Well-known group S-1-2-1                                        Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Authenticated Users           Well-known group S-1-5-11                                       Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\This Organization             Well-known group S-1-5-15                                       Mandatory group, Enabled by default, Enabled group
+LOCAL                                      Well-known group S-1-2-0                                        Mandatory group, Enabled by default, Enabled group
+XYZ\XYZ-SG-Finance-Team                    Group            S-1-5-21-775438850-3369346780-1388710907-1155  Mandatory group, Enabled by default, Enabled group
+XYZ\amandagonzalez_CBC                     User             S-1-5-21-3147001572-2836814592-1821215285-1174 Mandatory group, Enabled by default, Enabled group
+Authentication authority asserted identity Well-known group S-1-18-1                                       Mandatory group, Enabled by default, Enabled group
+Mandatory Label\Medium Mandatory Level     Label            S-1-16-8192
+
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                          State
+============================= ==================================== ========
+SeShutdownPrivilege           Shut down the system                 Disabled
+SeChangeNotifyPrivilege       Bypass traverse checking             Enabled
+SeUndockPrivilege             Remove computer from docking station Disabled
+SeIncreaseWorkingSetPrivilege Increase a process working set       Disabled
+SeTimeZonePrivilege           Change the time zone                 Disabled
+
+
+USER CLAIMS INFORMATION
+-----------------------
+
+User claims unknown.
+
+Kerberos support for Dynamic Access Control on this device has been disabled.
+PS C:\Users\amandagonzalez_cbc> nltest /sc_verify:xyz.local
+I_NetLogonControl failed: Status = 5 0x5 ERROR_ACCESS_DENIED
+PS C:\Users\amandagonzalez_cbc> nltest /dsgetdc:xyz.local
+           DC: \\D-DC1.XYZ.LOCAL
+      Address: \\192.168.100.20
+     Dom Guid: 046a6de2-6dc5-4132-abab-3153c0d811ce
+     Dom Name: XYZ.LOCAL
+  Forest Name: XYZ.LOCAL
+ Dc Site Name: Default-First-Site-Name
+Our Site Name: Default-First-Site-Name
+        Flags: PDC GC DS LDAP KDC TIMESERV WRITABLE DNS_DC DNS_DOMAIN DNS_FOREST CLOSE_SITE FULL_SECRET WS DS_8 DS_9 DS_10
+The command completed successfully
+PS C:\Users\amandagonzalez_cbc> nslookup xyz.local
+Server:  UnKnown
+Address:  192.168.100.20
+
+Name:    xyz.local
+Addresses:  192.168.100.20
+          192.168.100.21
+
+PS C:\Users\amandagonzalez_cbc> klist
+
+Current LogonId is 0:0x106fcf
+
+Cached Tickets: (3)
+
+#0>     Client: amandagonzalez_cbc @ XYZ.LOCAL
+        Server: krbtgt/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40e10000 -> forwardable renewable initial pre_authent name_canonicalize
+        Start Time: 3/18/2026 16:37:37 (local)
+        End Time:   3/19/2026 2:37:37 (local)
+        Renew Time: 3/25/2026 16:37:37 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0x1 -> PRIMARY
+        Kdc Called: D-DC1
+
+#1>     Client: amandagonzalez_cbc @ XYZ.LOCAL
+        Server: ldap/D-DC2.XYZ.LOCAL/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a50000 -> forwardable renewable pre_authent ok_as_delegate name_canonicalize
+        Start Time: 3/18/2026 16:37:38 (local)
+        End Time:   3/19/2026 2:37:37 (local)
+        Renew Time: 3/25/2026 16:37:37 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0
+        Kdc Called: D-DC2.XYZ.LOCAL
+
+#2>     Client: amandagonzalez_cbc @ XYZ.LOCAL
+        Server: LDAP/D-DC1.XYZ.LOCAL/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a50000 -> forwardable renewable pre_authent ok_as_delegate name_canonicalize
+        Start Time: 3/18/2026 16:37:38 (local)
+        End Time:   3/19/2026 2:37:37 (local)
+        Renew Time: 3/25/2026 16:37:37 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0
+        Kdc Called: D-DC2.XYZ.LOCAL
+PS C:\Users\amandagonzalez_cbc> net use G: \\s-fs1.xyz.local\financeshare
+System error 53 has occurred.
+
+The network path was not found.
+
+PS C:\Users\amandagonzalez_cbc>
+
+Troubleshooting COntinued:
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\Administrator> Get-ADUser amandagonzalez_cbc -Properties SIDHistory
+
+
+DistinguishedName : CN=Amanda Gonzalez,OU=XYZ-Finance,OU=Company,DC=XYZ,DC=LOCAL
+Enabled           : True
+GivenName         : Amanda
+Name              : Amanda Gonzalez
+ObjectClass       : user
+ObjectGUID        : 60b0922e-d5d8-43e5-8fe5-1f3a6f9ef83f
+SamAccountName    : amandagonzalez_CBC
+SID               : S-1-5-21-775438850-3369346780-1388710907-1165
+SIDHistory        : {S-1-5-21-3147001572-2836814592-1821215285-1174}
+Surname           : Gonzalez
+UserPrincipalName : amandagonzalez_CBC@XYZ.LOCAL
+
+
+
+PS C:\Users\Administrator> Get-ADDomain
+
+
+AllowedDNSSuffixes                 : {}
+ChildDomains                       : {}
+ComputersContainer                 : CN=Computers,DC=XYZ,DC=LOCAL
+DeletedObjectsContainer            : CN=Deleted Objects,DC=XYZ,DC=LOCAL
+DistinguishedName                  : DC=XYZ,DC=LOCAL
+DNSRoot                            : XYZ.LOCAL
+DomainControllersContainer         : OU=Domain Controllers,DC=XYZ,DC=LOCAL
+DomainMode                         : Windows2016Domain
+DomainSID                          : S-1-5-21-775438850-3369346780-1388710907
+ForeignSecurityPrincipalsContainer : CN=ForeignSecurityPrincipals,DC=XYZ,DC=LOCAL
+Forest                             : XYZ.LOCAL
+InfrastructureMaster               : D-DC1.XYZ.LOCAL
+LastLogonReplicationInterval       :
+LinkedGroupPolicyObjects           : {CN={31B2F340-016D-11D2-945F-00C04FB984F9},CN=Policies,CN=System,DC=XYZ,DC=LOCAL}
+LostAndFoundContainer              : CN=LostAndFound,DC=XYZ,DC=LOCAL
+ManagedBy                          :
+Name                               : XYZ
+NetBIOSName                        : XYZ
+ObjectClass                        : domainDNS
+ObjectGUID                         : 046a6de2-6dc5-4132-abab-3153c0d811ce
+ParentDomain                       :
+PDCEmulator                        : D-DC1.XYZ.LOCAL
+PublicKeyRequiredPasswordRolling   : True
+QuotasContainer                    : CN=NTDS Quotas,DC=XYZ,DC=LOCAL
+ReadOnlyReplicaDirectoryServers    : {}
+ReplicaDirectoryServers            : {D-DC1.XYZ.LOCAL, D-DC2.XYZ.LOCAL}
+RIDMaster                          : D-DC1.XYZ.LOCAL
+SubordinateReferences              : {DC=ForestDnsZones,DC=XYZ,DC=LOCAL, DC=DomainDnsZones,DC=XYZ,DC=LOCAL,
+                                     CN=Configuration,DC=XYZ,DC=LOCAL}
+SystemsContainer                   : CN=System,DC=XYZ,DC=LOCAL
+UsersContainer                     : CN=Users,DC=XYZ,DC=LOCAL
+
+
+
+PS C:\Users\Administrator> repadmin /syncall /ADeP
+Syncing all NC's held on D-DC1.
+Syncing partition: DC=ForestDnsZones,DC=XYZ,DC=LOCAL
+CALLBACK MESSAGE: The following replication is in progress:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: The following replication completed successfully:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: SyncAll Finished.
+SyncAll terminated with no errors.
+
+Syncing partition: DC=DomainDnsZones,DC=XYZ,DC=LOCAL
+CALLBACK MESSAGE: The following replication is in progress:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: The following replication completed successfully:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: SyncAll Finished.
+SyncAll terminated with no errors.
+
+Syncing partition: CN=Schema,CN=Configuration,DC=XYZ,DC=LOCAL
+CALLBACK MESSAGE: The following replication is in progress:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: The following replication completed successfully:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: SyncAll Finished.
+SyncAll terminated with no errors.
+
+Syncing partition: CN=Configuration,DC=XYZ,DC=LOCAL
+CALLBACK MESSAGE: The following replication is in progress:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: The following replication completed successfully:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: SyncAll Finished.
+SyncAll terminated with no errors.
+
+Syncing partition: DC=XYZ,DC=LOCAL
+CALLBACK MESSAGE: The following replication is in progress:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: The following replication completed successfully:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: SyncAll Finished.
+SyncAll terminated with no errors.
+
+PS C:\Users\Administrator> repadmin /showrepl
+
+Repadmin: running command /showrepl against full DC localhost
+Default-First-Site-Name\D-DC1
+DSA Options: IS_GC
+Site Options: (none)
+DSA object GUID: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d
+DSA invocationID: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d
+
+==== INBOUND NEIGHBORS ======================================
+
+DC=XYZ,DC=LOCAL
+    Default-First-Site-Name\D-DC2 via RPC
+        DSA object GUID: 8a372f35-2d97-449e-bb8e-c3553faf8ff0
+        Last attempt @ 2026-03-18 17:56:38 was successful.
+
+CN=Configuration,DC=XYZ,DC=LOCAL
+    Default-First-Site-Name\D-DC2 via RPC
+        DSA object GUID: 8a372f35-2d97-449e-bb8e-c3553faf8ff0
+        Last attempt @ 2026-03-18 17:56:38 was successful.
+
+CN=Schema,CN=Configuration,DC=XYZ,DC=LOCAL
+    Default-First-Site-Name\D-DC2 via RPC
+        DSA object GUID: 8a372f35-2d97-449e-bb8e-c3553faf8ff0
+        Last attempt @ 2026-03-18 17:56:38 was successful.
+
+DC=DomainDnsZones,DC=XYZ,DC=LOCAL
+    Default-First-Site-Name\D-DC2 via RPC
+        DSA object GUID: 8a372f35-2d97-449e-bb8e-c3553faf8ff0
+        Last attempt @ 2026-03-18 17:56:38 was successful.
+
+DC=ForestDnsZones,DC=XYZ,DC=LOCAL
+    Default-First-Site-Name\D-DC2 via RPC
+        DSA object GUID: 8a372f35-2d97-449e-bb8e-c3553faf8ff0
+        Last attempt @ 2026-03-18 17:56:38 was successful.
+
+PS C:\Users\Administrator> set l
+PS C:\Users\Administrator> echo %LOGONSERVER%
+%LOGONSERVER%
+PS C:\Users\Administrator> hostname
+D-DC1
+PS C:\Users\Administrator>
+
+Troubleshooting Continued: Workstation.
+Microsoft Windows [Version 10.0.19045.3803]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\amandagonzalez_cbc>echo %Logonserver%
+\\D-DC1
+
+C:\Users\amandagonzalez_cbc>whoami /all
+
+USER INFORMATION
+----------------
+
+User Name              SID
+====================== =============================================
+xyz\amandagonzalez_cbc S-1-5-21-775438850-3369346780-1388710907-1165
+
+
+GROUP INFORMATION
+-----------------
+
+Group Name                                 Type             SID                                            Attributes   
+========================================== ================ ============================================== ==================================================
+Everyone                                   Well-known group S-1-1-0                                        Mandatory group, Enabled by default, Enabled group
+BUILTIN\Users                              Alias            S-1-5-32-545                                   Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\INTERACTIVE                   Well-known group S-1-5-4                                        Mandatory group, Enabled by default, Enabled group
+CONSOLE LOGON                              Well-known group S-1-2-1                                        Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Authenticated Users           Well-known group S-1-5-11                                       Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\This Organization             Well-known group S-1-5-15                                       Mandatory group, Enabled by default, Enabled group
+LOCAL                                      Well-known group S-1-2-0                                        Mandatory group, Enabled by default, Enabled group
+XYZ\XYZ-SG-Finance-Team                    Group            S-1-5-21-775438850-3369346780-1388710907-1155  Mandatory group, Enabled by default, Enabled group
+XYZ\amandagonzalez_CBC                     User             S-1-5-21-3147001572-2836814592-1821215285-1174 Mandatory group, Enabled by default, Enabled group
+Authentication authority asserted identity Well-known group S-1-18-1                                       Mandatory group, Enabled by default, Enabled group
+Mandatory Label\Medium Mandatory Level     Label            S-1-16-8192                                                 
+
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                          State
+============================= ==================================== ========
+SeShutdownPrivilege           Shut down the system                 Disabled
+SeChangeNotifyPrivilege       Bypass traverse checking             Enabled
+SeUndockPrivilege             Remove computer from docking station Disabled
+SeIncreaseWorkingSetPrivilege Increase a process working set       Disabled
+SeTimeZonePrivilege           Change the time zone                 Disabled
+
+
+USER CLAIMS INFORMATION
+-----------------------
+
+User claims unknown.
+
+Kerberos support for Dynamic Access Control on this device has been disabled.
+
+C:\Users\amandagonzalez_cbc>set l
+LOCALAPPDATA=C:\Users\amandagonzalez_cbc\AppData\Local
+LOGONSERVER=\\D-DC1
+
+C:\Users\amandagonzalez_cbc>cd g:\
+Access is denied.
+
+C:\Users\amandagonzalez_cbc>hostname
+D-Win-2
+
+C:\Users\amandagonzalez_cbc>ipconfig /all
+
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : D-Win-2
+   Primary Dns Suffix  . . . . . . . : XYZ.LOCAL
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+   DNS Suffix Search List. . . . . . : XYZ.LOCAL
+
+Ethernet adapter Ethernet:
+
+   Connection-specific DNS Suffix  . :
+   Description . . . . . . . . . . . : Microsoft Hyper-V Network Adapter
+   Physical Address. . . . . . . . . : 00-15-5D-00-04-0F
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::ba0f:6fa6:3dd:185e%6(Preferred)
+   IPv4 Address. . . . . . . . . . . : 192.168.100.27(Preferred)
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.100.1
+   DHCPv6 IAID . . . . . . . . . . . : 100668765
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-31-49-5D-8C-00-15-5D-00-04-0F
+   DNS Servers . . . . . . . . . . . : 192.168.100.20
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+
+C:\Users\amandagonzalez_cbc>
+
+Troubleshooting : Workstation:
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\amandagonzalez_cbc> whoami /all
+
+USER INFORMATION
+----------------
+
+User Name              SID
+====================== =============================================
+xyz\amandagonzalez_cbc S-1-5-21-775438850-3369346780-1388710907-1165
+
+
+GROUP INFORMATION
+-----------------
+
+Group Name                                 Type             SID                                            Attributes   
+========================================== ================ ============================================== ==================================================
+Everyone                                   Well-known group S-1-1-0                                        Mandatory group, Enabled by default, Enabled group
+BUILTIN\Users                              Alias            S-1-5-32-545                                   Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\INTERACTIVE                   Well-known group S-1-5-4                                        Mandatory group, Enabled by default, Enabled group
+CONSOLE LOGON                              Well-known group S-1-2-1                                        Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Authenticated Users           Well-known group S-1-5-11                                       Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\This Organization             Well-known group S-1-5-15                                       Mandatory group, Enabled by default, Enabled group
+LOCAL                                      Well-known group S-1-2-0                                        Mandatory group, Enabled by default, Enabled group
+XYZ\XYZ-SG-Finance-Team                    Group            S-1-5-21-775438850-3369346780-1388710907-1155  Mandatory group, Enabled by default, Enabled group
+XYZ\amandagonzalez_CBC                     User             S-1-5-21-3147001572-2836814592-1821215285-1174 Mandatory group, Enabled by default, Enabled group
+Authentication authority asserted identity Well-known group S-1-18-1                                       Mandatory group, Enabled by default, Enabled group
+Mandatory Label\Medium Mandatory Level     Label            S-1-16-8192                                                 
+
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                          State
+============================= ==================================== ========
+SeShutdownPrivilege           Shut down the system                 Disabled
+SeChangeNotifyPrivilege       Bypass traverse checking             Enabled
+SeUndockPrivilege             Remove computer from docking station Disabled
+SeIncreaseWorkingSetPrivilege Increase a process working set       Disabled
+SeTimeZonePrivilege           Change the time zone                 Disabled
+
+
+USER CLAIMS INFORMATION
+-----------------------
+
+User claims unknown.
+
+Kerberos support for Dynamic Access Control on this device has been disabled.
+PS C:\Users\amandagonzalez_cbc> set l
+PS C:\Users\amandagonzalez_cbc> echo %LOGONSERVER%
+%LOGONSERVER%
+PS C:\Users\amandagonzalez_cbc> nslookup s-fs1.cbc.local
+Server:  UnKnown
+Address:  192.168.100.20
+
+Non-authoritative answer:
+Name:    s-fs1.cbc.local
+Address:  192.168.100.34
+
+PS C:\Users\amandagonzalez_cbc> nslookup cbc.local
+Server:  UnKnown
+Address:  192.168.100.20
+
+Non-authoritative answer:
+Name:    cbc.local
+Address:  192.168.100.30
+
+PS C:\Users\amandagonzalez_cbc> nslookup xyz.local
+Server:  UnKnown
+Address:  192.168.100.20
+
+Name:    xyz.local
+Addresses:  192.168.100.21
+          192.168.100.20
+
+PS C:\Users\amandagonzalez_cbc> nltest /dsgetdc:xyz.local
+           DC: \\D-DC2.XYZ.LOCAL
+      Address: \\192.168.100.21
+     Dom Guid: 046a6de2-6dc5-4132-abab-3153c0d811ce
+     Dom Name: XYZ.LOCAL
+  Forest Name: XYZ.LOCAL
+ Dc Site Name: Default-First-Site-Name
+Our Site Name: Default-First-Site-Name
+        Flags: GC DS LDAP KDC TIMESERV WRITABLE DNS_DC DNS_DOMAIN DNS_FOREST CLOSE_SITE FULL_SECRET WS DS_8 DS_9 DS_10
+The command completed successfully
+PS C:\Users\amandagonzalez_cbc> nltest /sc_verify:xyz.local
+I_NetLogonControl failed: Status = 5 0x5 ERROR_ACCESS_DENIED
+PS C:\Users\amandagonzalez_cbc> systeminfo |findstr /B /C:"Domain"
+Domain:                    XYZ.LOCAL
+PS C:\Users\amandagonzalez_cbc> nltest /dsgetdc:cbc.local
+           DC: \\G-S-DC1.CBC.local
+      Address: \\192.168.100.30
+     Dom Guid: 8f122da0-55e4-44db-bed3-190782c648bc
+     Dom Name: CBC.local
+  Forest Name: CBC.local
+ Dc Site Name: Default-First-Site-Name
+Our Site Name: Default-First-Site-Name
+        Flags: PDC GC DS LDAP KDC TIMESERV WRITABLE DNS_DC DNS_DOMAIN DNS_FOREST CLOSE_SITE FULL_SECRET WS DS_8 DS_9
+The command completed successfully
+PS C:\Users\amandagonzalez_cbc> nltest /sc_verify:cbc.local
+I_NetLogonControl failed: Status = 5 0x5 ERROR_ACCESS_DENIED
+PS C:\Users\amandagonzalez_cbc> cd G:\
+cd : Access is denied
+At line:1 char:1
++ cd G:\
++ ~~~~~~
+    + CategoryInfo          : PermissionDenied: (G:\:String) [Set-Location], UnauthorizedAccessException
+    + FullyQualifiedErrorId : ItemExistsUnauthorizedAccessError,Microsoft.PowerShell.Commands.SetLocationCommand
+
+cd : Cannot find path 'G:\' because it does not exist.
+At line:1 char:1
++ cd G:\
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (G:\:String) [Set-Location], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\Users\amandagonzalez_cbc> cd G:\
+cd : Access is denied
+At line:1 char:1
++ cd G:\
++ ~~~~~~
+    + CategoryInfo          : PermissionDenied: (G:\:String) [Set-Location], UnauthorizedAccessException
+    + FullyQualifiedErrorId : ItemExistsUnauthorizedAccessError,Microsoft.PowerShell.Commands.SetLocationCommand
+
+cd : Cannot find path 'G:\' because it does not exist.
+At line:1 char:1
++ cd G:\
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (G:\:String) [Set-Location], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\Users\amandagonzalez_cbc>
+
+Troubleshooting : DC1
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\Administrator> Get-ADUser amandagonzalez_cbc -Properties SIDHistory
+
+
+DistinguishedName : CN=Amanda Gonzalez,OU=XYZ-Finance,OU=Company,DC=XYZ,DC=LOCAL
+Enabled           : True
+GivenName         : Amanda
+Name              : Amanda Gonzalez
+ObjectClass       : user
+ObjectGUID        : 60b0922e-d5d8-43e5-8fe5-1f3a6f9ef83f
+SamAccountName    : amandagonzalez_CBC
+SID               : S-1-5-21-775438850-3369346780-1388710907-1165
+SIDHistory        : {S-1-5-21-3147001572-2836814592-1821215285-1174}
+Surname           : Gonzalez
+UserPrincipalName : amandagonzalez_CBC@XYZ.LOCAL
+
+
+
+PS C:\Users\Administrator> Get-ADDomain
+
+
+AllowedDNSSuffixes                 : {}
+ChildDomains                       : {}
+ComputersContainer                 : CN=Computers,DC=XYZ,DC=LOCAL
+DeletedObjectsContainer            : CN=Deleted Objects,DC=XYZ,DC=LOCAL
+DistinguishedName                  : DC=XYZ,DC=LOCAL
+DNSRoot                            : XYZ.LOCAL
+DomainControllersContainer         : OU=Domain Controllers,DC=XYZ,DC=LOCAL
+DomainMode                         : Windows2016Domain
+DomainSID                          : S-1-5-21-775438850-3369346780-1388710907
+ForeignSecurityPrincipalsContainer : CN=ForeignSecurityPrincipals,DC=XYZ,DC=LOCAL
+Forest                             : XYZ.LOCAL
+InfrastructureMaster               : D-DC1.XYZ.LOCAL
+LastLogonReplicationInterval       :
+LinkedGroupPolicyObjects           : {CN={31B2F340-016D-11D2-945F-00C04FB984F9},CN=Policies,CN=System,DC=XYZ,DC=LOCAL}
+LostAndFoundContainer              : CN=LostAndFound,DC=XYZ,DC=LOCAL
+ManagedBy                          :
+Name                               : XYZ
+NetBIOSName                        : XYZ
+ObjectClass                        : domainDNS
+ObjectGUID                         : 046a6de2-6dc5-4132-abab-3153c0d811ce
+ParentDomain                       :
+PDCEmulator                        : D-DC1.XYZ.LOCAL
+PublicKeyRequiredPasswordRolling   : True
+QuotasContainer                    : CN=NTDS Quotas,DC=XYZ,DC=LOCAL
+ReadOnlyReplicaDirectoryServers    : {}
+ReplicaDirectoryServers            : {D-DC1.XYZ.LOCAL, D-DC2.XYZ.LOCAL}
+RIDMaster                          : D-DC1.XYZ.LOCAL
+SubordinateReferences              : {DC=ForestDnsZones,DC=XYZ,DC=LOCAL, DC=DomainDnsZones,DC=XYZ,DC=LOCAL,
+                                     CN=Configuration,DC=XYZ,DC=LOCAL}
+SystemsContainer                   : CN=System,DC=XYZ,DC=LOCAL
+UsersContainer                     : CN=Users,DC=XYZ,DC=LOCAL
+
+
+
+PS C:\Users\Administrator> repadmin /syncall /ADeP
+Syncing all NC's held on D-DC1.
+Syncing partition: DC=ForestDnsZones,DC=XYZ,DC=LOCAL
+CALLBACK MESSAGE: The following replication is in progress:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: The following replication completed successfully:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: SyncAll Finished.
+SyncAll terminated with no errors.
+
+Syncing partition: DC=DomainDnsZones,DC=XYZ,DC=LOCAL
+CALLBACK MESSAGE: The following replication is in progress:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: The following replication completed successfully:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: SyncAll Finished.
+SyncAll terminated with no errors.
+
+Syncing partition: CN=Schema,CN=Configuration,DC=XYZ,DC=LOCAL
+CALLBACK MESSAGE: The following replication is in progress:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: The following replication completed successfully:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: SyncAll Finished.
+SyncAll terminated with no errors.
+
+Syncing partition: CN=Configuration,DC=XYZ,DC=LOCAL
+CALLBACK MESSAGE: The following replication is in progress:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: The following replication completed successfully:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: SyncAll Finished.
+SyncAll terminated with no errors.
+
+Syncing partition: DC=XYZ,DC=LOCAL
+CALLBACK MESSAGE: The following replication is in progress:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: The following replication completed successfully:
+    From: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d._msdcs.XYZ.LOCAL
+    To  : 8a372f35-2d97-449e-bb8e-c3553faf8ff0._msdcs.XYZ.LOCAL
+CALLBACK MESSAGE: SyncAll Finished.
+SyncAll terminated with no errors.
+
+PS C:\Users\Administrator> repadmin /showrepl
+
+Repadmin: running command /showrepl against full DC localhost
+Default-First-Site-Name\D-DC1
+DSA Options: IS_GC
+Site Options: (none)
+DSA object GUID: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d
+DSA invocationID: 30899f6c-63bb-4fc2-b1cc-bae88ad2520d
+
+==== INBOUND NEIGHBORS ======================================
+
+DC=XYZ,DC=LOCAL
+    Default-First-Site-Name\D-DC2 via RPC
+        DSA object GUID: 8a372f35-2d97-449e-bb8e-c3553faf8ff0
+        Last attempt @ 2026-03-18 17:56:38 was successful.
+
+CN=Configuration,DC=XYZ,DC=LOCAL
+    Default-First-Site-Name\D-DC2 via RPC
+        DSA object GUID: 8a372f35-2d97-449e-bb8e-c3553faf8ff0
+        Last attempt @ 2026-03-18 17:56:38 was successful.
+
+CN=Schema,CN=Configuration,DC=XYZ,DC=LOCAL
+    Default-First-Site-Name\D-DC2 via RPC
+        DSA object GUID: 8a372f35-2d97-449e-bb8e-c3553faf8ff0
+        Last attempt @ 2026-03-18 17:56:38 was successful.
+
+DC=DomainDnsZones,DC=XYZ,DC=LOCAL
+    Default-First-Site-Name\D-DC2 via RPC
+        DSA object GUID: 8a372f35-2d97-449e-bb8e-c3553faf8ff0
+        Last attempt @ 2026-03-18 17:56:38 was successful.
+
+DC=ForestDnsZones,DC=XYZ,DC=LOCAL
+    Default-First-Site-Name\D-DC2 via RPC
+        DSA object GUID: 8a372f35-2d97-449e-bb8e-c3553faf8ff0
+        Last attempt @ 2026-03-18 17:56:38 was successful.
+
+PS C:\Users\Administrator> set l
+PS C:\Users\Administrator> echo %LOGONSERVER%
+%LOGONSERVER%
+PS C:\Users\Administrator> hostname
+D-DC1
+PS C:\Users\Administrator> nltest /domain_trusts
+List of domain trusts:
+    0: CBC CBC.local (NT 5) (Direct Outbound) (Direct Inbound) ( Attr: foresttrans )
+    1: XYZ XYZ.LOCAL (NT 5) (Forest Tree Root) (Primary Domain) (Native)
+The command completed successfully
+PS C:\Users\Administrator> netdom trust xyz.local /domain:cbc.local /quarantine:NO
+SID filtering is not enabled for this trust.
+
+The command completed successfully.
+
+PS C:\Users\Administrator> netdom trust cbc.local /domain:xyz.local /quarantine:NO
+SID filtering is not enabled for this trust.
+
+The command completed successfully.
+
+PS C:\Users\Administrator>
+
+New Migrated User: JeanMichaels_cbc with password expiration enabled and working.
+
+[Settings Section]
+Task: User Migration (2)
+ADMT Console
+    User:       XYZ\administrator
+    Computer:   D-ADMT-II.XYZ.LOCAL (D-ADMT-II)
+        Domain:     XYZ.LOCAL (XYZ)
+        OS:         Windows Server 2012 R2 Datacenter Evaluation 6.3 (9600) 
+Source Domain
+    Name:   CBC.local (CBC)
+    DC:     G-S-DC1.CBC.local (G-S-DC1)
+        OS:     Windows Server 2012 R2 Datacenter Evaluation 6.3 (9600) 
+    OU:     
+Target Domain
+    Name:   XYZ.LOCAL (XYZ)
+    DC:     D-DC1.XYZ.LOCAL (D-DC1)
+        OS:     Windows Server 2019 Datacenter Evaluation 10.0 (17763) 
+    OU:     LDAP://XYZ.LOCAL/OU=XYZ-Finance,OU=Company,DC=XYZ,DC=LOCAL
+Intra-Forest: No
+Password Option:        Copy passwords, only for new objects = No
+Password Export Server: G-S-DC1.CBC.local
+Migrate Security Identifiers: Yes
+Update Rights: No
+Translate Roaming Profiles: No
+Fix group membership: Yes
+Conflict Option: Ignore
+Source Disable Option: Leave source account
+Source Expiration: Do not expire source account
+Target Disable Option: Enable target account
+Migrate groups: No
+Migrate service accounts: Yes
+
+[Object Migration Section]
+2026-03-18 19:43:34 Starting Account Replicator.
+2026-03-18 19:43:38 CN=Jean Michaels     - Created
+2026-03-18 19:43:38 SID for CBC\jeanmichaels_cbc added to the SID History of XYZ\jeanmichaels_cbc
+2026-03-18 19:44:01   CN=Jean Michaels     - Password Copied.
+2026-03-18 19:44:02 Operation completed.
+
+WhoAmI /ALL Jean Michaels
+
+PS C:\Users\jeanmichaels_cbc> whoami /all
+
+USER INFORMATION
+----------------
+
+User Name            SID
+==================== =============================================
+xyz\jeanmichaels_cbc S-1-5-21-775438850-3369346780-1388710907-1169
+
+
+GROUP INFORMATION
+-----------------
+
+Group Name                                 Type             SID                                            Attributes
+========================================== ================ ============================================== ==================================================
+Everyone                                   Well-known group S-1-1-0                                        Mandatory group, Enabled by default, Enabled group
+BUILTIN\Users                              Alias            S-1-5-32-545                                   Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\INTERACTIVE                   Well-known group S-1-5-4                                        Mandatory group, Enabled by default, Enabled group
+CONSOLE LOGON                              Well-known group S-1-2-1                                        Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Authenticated Users           Well-known group S-1-5-11                                       Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\This Organization             Well-known group S-1-5-15                                       Mandatory group, Enabled by default, Enabled group
+LOCAL                                      Well-known group S-1-2-0                                        Mandatory group, Enabled by default, Enabled group
+XYZ\jeanmichaels_cbc                       User             S-1-5-21-3147001572-2836814592-1821215285-1189 Mandatory group, Enabled by default, Enabled group
+Authentication authority asserted identity Well-known group S-1-18-1                                       Mandatory group, Enabled by default, Enabled group
+Mandatory Label\Medium Mandatory Level     Label            S-1-16-8192
+
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                          State
+============================= ==================================== ========
+SeShutdownPrivilege           Shut down the system                 Disabled
+SeChangeNotifyPrivilege       Bypass traverse checking             Enabled
+SeUndockPrivilege             Remove computer from docking station Disabled
+SeIncreaseWorkingSetPrivilege Increase a process working set       Disabled
+SeTimeZonePrivilege           Change the time zone                 Disabled
+
+
+USER CLAIMS INFORMATION
+-----------------------
+
+User claims unknown.
+
+Kerberos support for Dynamic Access Control on this device has been disabled.
+PS C:\Users\jeanmichaels_cbc> nslookup s-fs1@cbc.local
+Server:  UnKnown
+Address:  192.168.100.20
+
+*** UnKnown can't find s-fs1@cbc.local: Non-existent domain
+PS C:\Users\jeanmichaels_cbc> ping s-fs1
+
+Pinging S-FS1 [fe80::4922:37aa:57a:7168%6] with 32 bytes of data:
+Reply from fe80::4922:37aa:57a:7168%6: time=2ms
+Reply from fe80::4922:37aa:57a:7168%6: time<1ms
+Reply from fe80::4922:37aa:57a:7168%6: time<1ms
+Reply from fe80::4922:37aa:57a:7168%6: time=2ms
+
+Ping statistics for fe80::4922:37aa:57a:7168%6:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 2ms, Average = 1ms
+DC1 on XYZ:
+PS C:\Users\Administrator> nltest /domain_trusts
+List of domain trusts:
+    0: CBC CBC.local (NT 5) (Direct Outbound) (Direct Inbound) ( Attr: foresttrans )
+    1: XYZ XYZ.LOCAL (NT 5) (Forest Tree Root) (Primary Domain) (Native)
+The command completed successfully
+PS C:\Users\Administrator> nltest /sc_verify:cbc.local
+Flags: b0 HAS_IP  HAS_TIMESERV
+Trusted DC Name \\G-S-DC1.CBC.local
+Trusted DC Connection Status Status = 0 0x0 NERR_Success
+Trust Verification Status = 0 0x0 NERR_Success
+The command completed successfully
+PS C:\Users\Administrator> nltest /sc_verify:xyz.local
+I_NetLogonControl failed: Status = 1355 0x54b ERROR_NO_SUCH_DOMAIN
+PS C:\Users\Administrator> hostname
+D-DC1
+PS C:\Users\Administrator> w32tm /query /status
+Leap Indicator: 0(no warning)
+Stratum: 5 (secondary reference - syncd by (S)NTP)
+Precision: -23 (119.209ns per tick)
+Root Delay: 0.0002539s
+Root Dispersion: 0.0100002s
+ReferenceId: 0x564D5450 (source IP:  86.77.84.80)
+Last Successful Sync Time: 3/19/2026 8:43:15 AM
+Source: VM IC Time Synchronization Provider
+Poll Interval: 6 (64s)
+
+DC1 on CBC:
+PS C:\Users\Administrator> netdom trust xyz.local /domain:cbc.local /quarantine:No
+Setting the trust to not filter SIDs.
+
+The command completed successfully.
+
+PS C:\Users\Administrator> nltest /domain_trusts
+List of domain trusts:
+    0: XYZ XYZ.LOCAL (NT 5) (Direct Outbound) (Direct Inbound) ( Attr: 0x8 )
+    1: CBC CBC.local (NT 5) (Forest Tree Root) (Primary Domain) (Native)
+The command completed successfully
+PS C:\Users\Administrator> nltest /sc_verify:cbc.local
+I_NetLogonControl failed: Status = 1355 0x54b ERROR_NO_SUCH_DOMAIN
+PS C:\Users\Administrator> nltest /sc_verify:xyz.local
+Flags: b0 HAS_IP  HAS_TIMESERV
+Trusted DC Name \\D-DC1.XYZ.LOCAL
+Trusted DC Connection Status Status = 0 0x0 NERR_Success
+Trust Verification Status = 0 0x0 NERR_Success
+The command completed successfully
+PS C:\Users\Administrator> hostname
+G-S-DC1
+PS C:\Users\Administrator> w32tm /query /status
+Leap Indicator: 0(no warning)
+Stratum: 2 (secondary reference - syncd by (S)NTP)
+Precision: -6 (15.625ms per tick)
+Root Delay: 0.0004431s
+Root Dispersion: 0.0100000s
+ReferenceId: 0x564D5450 (source IP:  86.77.84.80)
+Last Successful Sync Time: 19.03.2026 08:42:52
+Source: VM IC Time Synchronization Provider
+Poll Interval: 6 (64s)
+
+Desktop joined to xyz
+
+PS C:\Users\jeanmichaels_cbc> klist
+
+Current LogonId is 0:0x63b86
+
+Cached Tickets: (3)
+
+#0>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: krbtgt/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40e10000 -> forwardable renewable initial pre_authent name_canonicalize
+        Start Time: 3/19/2026 8:30:19 (local)
+        End Time:   3/19/2026 18:30:19 (local)
+        Renew Time: 3/26/2026 8:30:19 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0x1 -> PRIMARY
+        Kdc Called: D-DC1
+
+#1>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: LDAP/D-DC2.XYZ.LOCAL/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a50000 -> forwardable renewable pre_authent ok_as_delegate name_canonicalize
+        Start Time: 3/19/2026 8:32:58 (local)
+        End Time:   3/19/2026 18:30:19 (local)
+        Renew Time: 3/26/2026 8:30:19 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0
+        Kdc Called: D-DC1.XYZ.LOCAL
+
+#2>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: LDAP/D-DC1.XYZ.LOCAL/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a50000 -> forwardable renewable pre_authent ok_as_delegate name_canonicalize
+        Start Time: 3/19/2026 8:30:19 (local)
+        End Time:   3/19/2026 18:30:19 (local)
+        Renew Time: 3/26/2026 8:30:19 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0
+        Kdc Called: D-DC1.XYZ.LOCAL
+PS C:\Users\jeanmichaels_cbc> dir \\s-fs1.cbc.local\financeshare
+dir : Access is denied
+At line:1 char:1
++ dir \\s-fs1.cbc.local\financeshare
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : PermissionDenied: (\\s-fs1.cbc.local\financeshare:String) [Get-ChildItem], UnauthorizedA
+   ccessException
+    + FullyQualifiedErrorId : ItemExistsUnauthorizedAccessError,Microsoft.PowerShell.Commands.GetChildItemCommand
+
+dir : Cannot find path '\\s-fs1.cbc.local\financeshare' because it does not exist.
+At line:1 char:1
++ dir \\s-fs1.cbc.local\financeshare
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (\\s-fs1.cbc.local\financeshare:String) [Get-ChildItem], ItemNotFoundExc
+   eption
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetChildItemCommand
+
+PS C:\Users\jeanmichaels_cbc> klist
+
+Current LogonId is 0:0x63b86
+
+Cached Tickets: (5)
+
+#0>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: krbtgt/CBC.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: RSADSI RC4-HMAC(NT)
+        Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
+        Start Time: 3/19/2026 8:37:16 (local)
+        End Time:   3/19/2026 18:30:19 (local)
+        Renew Time: 3/26/2026 8:30:19 (local)
+        Session Key Type: RSADSI RC4-HMAC(NT)
+        Cache Flags: 0x200 -> DISABLE-TGT-DELEGATION
+        Kdc Called: D-DC1.XYZ.LOCAL
+
+#1>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: krbtgt/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40e10000 -> forwardable renewable initial pre_authent name_canonicalize
+        Start Time: 3/19/2026 8:30:19 (local)
+        End Time:   3/19/2026 18:30:19 (local)
+        Renew Time: 3/26/2026 8:30:19 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0x1 -> PRIMARY
+        Kdc Called: D-DC1
+
+#2>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: cifs/s-fs1.cbc.local @ CBC.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
+        Start Time: 3/19/2026 8:37:16 (local)
+        End Time:   3/19/2026 18:30:19 (local)
+        Renew Time: 3/26/2026 8:30:19 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0x200 -> DISABLE-TGT-DELEGATION
+        Kdc Called: G-S-DC1.CBC.local
+
+#3>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: LDAP/D-DC2.XYZ.LOCAL/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a50000 -> forwardable renewable pre_authent ok_as_delegate name_canonicalize
+        Start Time: 3/19/2026 8:32:58 (local)
+        End Time:   3/19/2026 18:30:19 (local)
+        Renew Time: 3/26/2026 8:30:19 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0
+        Kdc Called: D-DC1.XYZ.LOCAL
+
+#4>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: LDAP/D-DC1.XYZ.LOCAL/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a50000 -> forwardable renewable pre_authent ok_as_delegate name_canonicalize
+        Start Time: 3/19/2026 8:30:19 (local)
+        End Time:   3/19/2026 18:30:19 (local)
+        Renew Time: 3/26/2026 8:30:19 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0
+        Kdc Called: D-DC1.XYZ.LOCAL
+PS C:\Users\jeanmichaels_cbc> nslookup s-fs1.cbc.local
+Server:  UnKnown
+Address:  192.168.100.20
+
+Non-authoritative answer:
+Name:    s-fs1.cbc.local
+Address:  192.168.100.34
+
+PS C:\Users\jeanmichaels_cbc> klist purge
+
+Current LogonId is 0:0x63b86
+        Deleting all tickets:
+        Ticket(s) purged!
+PS C:\Users\jeanmichaels_cbc> runas /netonly /user:cbc\jeanmichaels_cbc cmd
+Enter the password for cbc\jeanmichaels_cbc:
+Attempting to start cmd as user "cbc\jeanmichaels_cbc" ...
+PS C:\Users\jeanmichaels_cbc>
+
+PS C:\Users\jeanmichaels_cbc> w32tm /query /status
+Leap Indicator: 0(no warning)
+Stratum: 5 (secondary reference - syncd by (S)NTP)
+Precision: -23 (119.209ns per tick)
+Root Delay: 0.0002318s
+Root Dispersion: 0.0100002s
+ReferenceId: 0x564D5450 (source IP:  86.77.84.80)
+Last Successful Sync Time: 3/19/2026 8:48:52 AM
+Source: VM IC Time Synchronization Provider
+Poll Interval: 10 (1024s)
+
+PS C:\Users\jeanmichaels_cbc>
+
+CMD Session after runas:
+
+C:\WINDOWS\system32>klist
+
+Current LogonId is 0:0x136752
+
+Cached Tickets: (2)
+
+#0>     Client: jeanmichaels_cbc @ CBC.LOCAL
+        Server: krbtgt/CBC.LOCAL @ CBC.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40e10000 -> forwardable renewable initial pre_authent name_canonicalize
+        Start Time: 3/19/2026 8:39:43 (local)
+        End Time:   3/19/2026 18:39:43 (local)
+        Renew Time: 3/26/2026 8:39:43 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0x1 -> PRIMARY
+        Kdc Called: G-S-DC1
+
+#1>     Client: jeanmichaels_cbc @ CBC.LOCAL
+        Server: cifs/s-fs1.cbc.local @ CBC.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
+        Start Time: 3/19/2026 8:39:43 (local)
+        End Time:   3/19/2026 18:39:43 (local)
+        Renew Time: 3/26/2026 8:39:43 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0
+        Kdc Called: G-S-DC1.CBC.local
+
+C:\WINDOWS\system32>
+
+C:\WINDOWS\system32>net use \\s-fs1.cbc.local\financeshare
+The command completed successfully.
+
+
+C:\WINDOWS\system32>cd \\f-fs1.cbc.local\financeshare
+'\\f-fs1.cbc.local\financeshare'
+CMD does not support UNC paths as current directories.
+
+
+Still on Desktop workstation on powersehll console.
+
+PS C:\Users\jeanmichaels_cbc> net use \\s-fs1.cbc.local\financeshare
+The command completed successfully.
+
+PS C:\Users\jeanmichaels_cbc> klist
+
+Current LogonId is 0:0x63b86
+
+Cached Tickets: (3)
+
+#0>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: krbtgt/CBC.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: RSADSI RC4-HMAC(NT)
+        Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
+        Start Time: 3/19/2026 8:51:10 (local)
+        End Time:   3/19/2026 18:51:10 (local)
+        Renew Time: 3/26/2026 8:51:10 (local)
+        Session Key Type: RSADSI RC4-HMAC(NT)
+        Cache Flags: 0x200 -> DISABLE-TGT-DELEGATION
+        Kdc Called: D-DC1.XYZ.LOCAL
+
+#1>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: krbtgt/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40e10000 -> forwardable renewable initial pre_authent name_canonicalize
+        Start Time: 3/19/2026 8:51:10 (local)
+        End Time:   3/19/2026 18:51:10 (local)
+        Renew Time: 3/26/2026 8:51:10 (local)
+        Session Key Type: RSADSI RC4-HMAC(NT)
+        Cache Flags: 0x1 -> PRIMARY
+        Kdc Called: D-DC1.XYZ.LOCAL
+
+#2>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: cifs/s-fs1.cbc.local @ CBC.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
+        Start Time: 3/19/2026 8:51:10 (local)
+        End Time:   3/19/2026 18:51:10 (local)
+        Renew Time: 3/26/2026 8:51:10 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0x200 -> DISABLE-TGT-DELEGATION
+        Kdc Called: G-S-DC1.CBC.local
+
+On S-FS1:
+
+PS C:\Users\administrator.CBC> setspn -L s-fs1
+Registered ServicePrincipalNames for CN=S-FS1,CN=Computers,DC=CBC,DC=local:
+        TERMSRV/S-FS1
+        TERMSRV/S-FS1.CBC.local
+        WSMAN/S-FS1
+        WSMAN/S-FS1.CBC.local
+        RestrictedKrbHost/S-FS1
+        HOST/S-FS1
+        RestrictedKrbHost/S-FS1.CBC.local
+        HOST/S-FS1.CBC.local
+
+On S-FS1:
+        HOST/S-FS1.CBC.local
+PS C:\Users\administrator.CBC> icacls \\s-fs1.cbc.local\financeshare
+\\s-fs1.cbc.local\financeshare: Access is denied.
+Successfully processed 0 files; Failed processing 1 files
+PS C:\Users\administrator.CBC> whoami
+cbc\administrator
+PS C:\Users\administrator.CBC> hostname
+S-FS1
+PS C:\Users\administrator.CBC> icacls C:\FinanceShare
+C:\FinanceShare NT AUTHORITY\SYSTEM:(I)(OI)(CI)(F)
+                BUILTIN\Administrators:(I)(OI)(CI)(F)
+                BUILTIN\Users:(I)(OI)(CI)(RX)
+                BUILTIN\Users:(I)(CI)(AD)
+                BUILTIN\Users:(I)(CI)(WD)
+                CREATOR OWNER:(I)(OI)(CI)(IO)(F)
+
+Successfully processed 1 files; Failed processing 0 files
+PS C:\Users\administrator.CBC>
+
+S-FS1:
+
+PS C:\Users\administrator.CBC> Get-SmbShare -name FinanceShare | Get-SmbShareAccess
+
+Name                    ScopeName               AccountName             AccessControlType       AccessRight
+----                    ---------               -----------             -----------------       -----------
+FinanceShare            *                       CBC\CBC-SG-Finance-Team Allow                   Change
+
+
+PS C:\Users\administrator.CBC> Revoke-SmbShareAccess -name FinanceShare -AccountName Everyone -Force
+
+Name                    ScopeName               AccountName             AccessControlType       AccessRight
+----                    ---------               -----------             -----------------       -----------
+FinanceShare            *                       CBC\CBC-SG-Finance-Team Allow                   Change
+
+
+PS C:\Users\administrator.CBC> Grant-SmbShareAccess -Name FinanceShare -AccountName "CBC\CBC-SG-Finance-Team" -Acces
+ht Full -Force
+
+Name                    ScopeName               AccountName             AccessControlType       AccessRight
+----                    ---------               -----------             -----------------       -----------
+FinanceShare            *                       CBC\CBC-SG-Finance-Team Allow                   Full
+
+
+PS C:\Users\administrator.CBC> icacls C:\FinanceShare /grant "CBC\CBC-SG-Finance-Team:(OI)(CI)M"
+processed file: C:\FinanceShare
+Successfully processed 1 files; Failed processing 0 files
+PS C:\Users\administrator.CBC> icacls C:\FinanceShare /remove "BUILTIN\Users"
+processed file: C:\FinanceShare
+Successfully processed 1 files; Failed processing 0 files
+PS C:\Users\administrator.CBC> Get-SmbShare -name FinanceShare | Get-SmbShareAccess
+
+Name                    ScopeName               AccountName             AccessControlType       AccessRight
+----                    ---------               -----------             -----------------       -----------
+FinanceShare            *                       CBC\CBC-SG-Finance-Team Allow                   Full
+
+
+PS C:\Users\administrator.CBC>
+
+On Desktop:
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\jeanmichaels_cbc> whoami /all
+
+USER INFORMATION
+----------------
+
+User Name            SID
+==================== =============================================
+xyz\jeanmichaels_cbc S-1-5-21-775438850-3369346780-1388710907-1169
+
+
+GROUP INFORMATION
+-----------------
+
+Group Name                                 Type             SID                                            Attributes   
+========================================== ================ ============================================== ==================================================
+Everyone                                   Well-known group S-1-1-0                                        Mandatory group, Enabled by default, Enabled group
+BUILTIN\Users                              Alias            S-1-5-32-545                                   Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\INTERACTIVE                   Well-known group S-1-5-4                                        Mandatory group, Enabled by default, Enabled group
+CONSOLE LOGON                              Well-known group S-1-2-1                                        Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Authenticated Users           Well-known group S-1-5-11                                       Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\This Organization             Well-known group S-1-5-15                                       Mandatory group, Enabled by default, Enabled group
+LOCAL                                      Well-known group S-1-2-0                                        Mandatory group, Enabled by default, Enabled group
+XYZ\jeanmichaels_cbc                       User             S-1-5-21-3147001572-2836814592-1821215285-1189 Mandatory group, Enabled by default, Enabled group
+Authentication authority asserted identity Well-known group S-1-18-1                                       Mandatory group, Enabled by default, Enabled group
+Mandatory Label\Medium Mandatory Level     Label            S-1-16-8192                                                 
+
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                          State
+============================= ==================================== ========
+SeShutdownPrivilege           Shut down the system                 Disabled
+SeChangeNotifyPrivilege       Bypass traverse checking             Enabled
+SeUndockPrivilege             Remove computer from docking station Disabled
+SeIncreaseWorkingSetPrivilege Increase a process working set       Disabled
+SeTimeZonePrivilege           Change the time zone                 Disabled
+
+
+USER CLAIMS INFORMATION
+-----------------------
+
+User claims unknown.
+
+Kerberos support for Dynamic Access Control on this device has been disabled.
+PS C:\Users\jeanmichaels_cbc> klist
+
+Current LogonId is 0:0x2c502a
+
+Cached Tickets: (6)
+
+#0>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: krbtgt/CBC.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: RSADSI RC4-HMAC(NT)
+        Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
+        Start Time: 3/19/2026 9:18:41 (local)
+        End Time:   3/19/2026 19:18:02 (local)
+        Renew Time: 3/26/2026 9:18:02 (local)
+        Session Key Type: RSADSI RC4-HMAC(NT)
+        Cache Flags: 0x200 -> DISABLE-TGT-DELEGATION
+        Kdc Called: D-DC1.XYZ.LOCAL
+
+#1>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: krbtgt/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40e10000 -> forwardable renewable initial pre_authent name_canonicalize
+        Start Time: 3/19/2026 9:18:02 (local)
+        End Time:   3/19/2026 19:18:02 (local)
+        Renew Time: 3/26/2026 9:18:02 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0x1 -> PRIMARY
+        Kdc Called: D-DC1
+
+#2>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: HTTP/s-fs1.cbc.local @ CBC.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
+        Start Time: 3/19/2026 9:18:41 (local)
+        End Time:   3/19/2026 19:18:02 (local)
+        Renew Time: 3/26/2026 9:18:02 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0x200 -> DISABLE-TGT-DELEGATION
+        Kdc Called: G-S-DC1.CBC.local
+
+#3>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: cifs/s-fs1.cbc.local @ CBC.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
+        Start Time: 3/19/2026 9:18:38 (local)
+        End Time:   3/19/2026 19:18:02 (local)
+        Renew Time: 3/26/2026 9:18:02 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0x200 -> DISABLE-TGT-DELEGATION
+        Kdc Called: G-S-DC1.CBC.local
+
+#4>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: ldap/D-DC1.XYZ.LOCAL/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a50000 -> forwardable renewable pre_authent ok_as_delegate name_canonicalize
+        Start Time: 3/19/2026 9:18:03 (local)
+        End Time:   3/19/2026 19:18:02 (local)
+        Renew Time: 3/26/2026 9:18:02 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0
+        Kdc Called: D-DC1.XYZ.LOCAL
+
+#5>     Client: jeanmichaels_cbc @ XYZ.LOCAL
+        Server: LDAP/D-DC2.XYZ.LOCAL/XYZ.LOCAL @ XYZ.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a50000 -> forwardable renewable pre_authent ok_as_delegate name_canonicalize
+        Start Time: 3/19/2026 9:18:02 (local)
+        End Time:   3/19/2026 19:18:02 (local)
+        Renew Time: 3/26/2026 9:18:02 (local)
+        Session Key Type: AES-256-CTS-HMAC-SHA1-96
+        Cache Flags: 0
+        Kdc Called: D-DC1.XYZ.LOCAL
+PS C:\Users\jeanmichaels_cbc> dir \\s-fs1.cbc.local\financeshare
+dir : Access is denied
+At line:1 char:1
++ dir \\s-fs1.cbc.local\financeshare
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : PermissionDenied: (\\s-fs1.cbc.local\financeshare:String) [Get-ChildItem], UnauthorizedA
+   ccessException
+    + FullyQualifiedErrorId : ItemExistsUnauthorizedAccessError,Microsoft.PowerShell.Commands.GetChildItemCommand
+
+dir : Cannot find path '\\s-fs1.cbc.local\financeshare' because it does not exist.
+At line:1 char:1
++ dir \\s-fs1.cbc.local\financeshare
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (\\s-fs1.cbc.local\financeshare:String) [Get-ChildItem], ItemNotFoundExc
+   eption
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetChildItemCommand
+
+PS C:\Users\jeanmichaels_cbc> net use \\s-fs1.cbc.local\financeshare\
+System error 53 has occurred.
+
+The network path was not found.
+
+PS C:\Users\jeanmichaels_cbc> net use \\s-fs1\financeshare\
+System error 53 has occurred.
+
+The network path was not found.
+
+PS C:\Users\jeanmichaels_cbc> ping s-fs1.cbc.local
+
+Pinging s-fs1.cbc.local [192.168.100.34] with 32 bytes of data:
+Reply from 192.168.100.34: bytes=32 time<1ms TTL=128
+Reply from 192.168.100.34: bytes=32 time<1ms TTL=128
+Reply from 192.168.100.34: bytes=32 time<1ms TTL=128
+Reply from 192.168.100.34: bytes=32 time<1ms TTL=128
+
+Ping statistics for 192.168.100.34:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+PS C:\Users\jeanmichaels_cbc> ping cbc.local
+
+Pinging cbc.local [192.168.100.30] with 32 bytes of data:
+Reply from 192.168.100.30: bytes=32 time=1ms TTL=128
+Reply from 192.168.100.30: bytes=32 time<1ms TTL=128
+Reply from 192.168.100.30: bytes=32 time<1ms TTL=128
+Reply from 192.168.100.30: bytes=32 time<1ms TTL=128
+
+Ping statistics for 192.168.100.30:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 1ms, Average = 0ms
+PS C:\Users\jeanmichaels_cbc> dir \\s-fs1\financeshare
+dir : Access is denied
+At line:1 char:1
++ dir \\s-fs1\financeshare
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : PermissionDenied: (\\s-fs1\financeshare:String) [Get-ChildItem], UnauthorizedAccessExcep
+   tion
+    + FullyQualifiedErrorId : ItemExistsUnauthorizedAccessError,Microsoft.PowerShell.Commands.GetChildItemCommand
+
+dir : Cannot find path '\\s-fs1\financeshare' because it does not exist.
+At line:1 char:1
++ dir \\s-fs1\financeshare
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (\\s-fs1\financeshare:String) [Get-ChildItem], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetChildItemCommand
+
+PS C:\Users\jeanmichaels_cbc> net use \\s-fs1\financeshare
+Local name
+Remote name       \\s-fs1\FinanceShare
+Resource type     Disk
+Status            OK
+# Opens           0
+# Connections     1
+The command completed successfully.
+
+PS C:\Users\jeanmichaels_cbc> net use K: \\s-fs1\financeshare
+The command completed successfully.
+
+PS C:\Users\jeanmichaels_cbc> cd K:\
+cd : Access is denied
+At line:1 char:1
++ cd K:\
++ ~~~~~~
+    + CategoryInfo          : PermissionDenied: (K:\:String) [Set-Location], UnauthorizedAccessException
+    + FullyQualifiedErrorId : ItemExistsUnauthorizedAccessError,Microsoft.PowerShell.Commands.SetLocationCommand
+
+cd : Cannot find path 'K:\' because it does not exist.
+At line:1 char:1
++ cd K:\
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (K:\:String) [Set-Location], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\Users\jeanmichaels_cbc>
