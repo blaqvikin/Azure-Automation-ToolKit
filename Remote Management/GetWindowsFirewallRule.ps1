@@ -1,2 +1,0 @@
-#Simple PowerShell command to find out about a firewall rule.
-Get-NetFirewallRule | Where-Object {$_.Name -Match "Remote Desktop"} | Select-Object Name, DisplayName, Enabled, Profile, Direction, Description
